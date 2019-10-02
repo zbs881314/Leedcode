@@ -1,0 +1,127 @@
+'''
+Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+
+For example, two is written as II in Roman numeral, just two one's added together. Twelve is written as, XII, which is simply X + II. The number twenty seven is written as XXVII, which is XX + V + II.
+
+Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
+
+    I can be placed before V (5) and X (10) to make 4 and 9. 
+    X can be placed before L (50) and C (100) to make 40 and 90. 
+    C can be placed before D (500) and M (1000) to make 400 and 900.
+
+Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.
+
+Example 1:
+
+Input: "III"
+Output: 3
+
+Example 2:
+
+Input: "IV"
+Output: 4
+'''
+# JAVA
+
+class Solution {
+    public int romanToInt(String s) {
+        int c = 0; // count my current number
+        
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            char n = '0'; //n concerns about next character of the string and initialized to random character
+            if(i < s.length()-1) {
+                n = s.charAt(i+1); // n is initialized
+            }
+            if(ch == 'I') {
+                if(n == 'V') {
+                    c += 4; //when IV it count as 4
+                    i++;
+                    continue;
+                }
+                if(n == 'X') {
+                    c += 9; // case of IX
+                    i++;
+                    continue;
+                }
+                c += 1; //else case of I
+                continue;
+            }
+            if(ch == 'X') {
+                if(n == 'L') {
+                    c += 40; //case of XL
+                    i++;
+                    continue;
+                }
+                if(n == 'C') {
+                    c += 90; //case of XC
+                    i++;
+                    continue;
+                }
+                c += 10; //case of X
+                continue;
+            }
+            if(ch == 'C') {
+                if(n == 'D') {
+                    c += 400; //case of CD
+                    i++;
+                    continue;
+                }
+                if(n == 'M') {
+                    c += 900; //case of CM
+                    i++;
+                    continue;
+                }
+                c += 100; //case of C
+                continue;
+            }
+            if(ch == 'V') {
+                c += 5; //case of V
+                continue;
+            }
+            if(ch == 'L') {
+                c += 50; //case of L
+                continue;
+            }
+            if(ch == 'D') {
+                c += 500; //case of D
+                continue;
+            }
+            if(ch == 'M') {
+                c += 1000; //case of M
+                continue;
+            }
+        }
+        return c;
+    }
+}
+                
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
